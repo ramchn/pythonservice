@@ -1,0 +1,1 @@
+uvicorn --port 8071 sql_app.main:app

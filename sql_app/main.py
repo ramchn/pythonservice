@@ -56,5 +56,8 @@ def delete_job(id: int, db: Session = Depends(get_db)):
     return crud.delete_job(db=db, JobId=id)
 
 @app.post("/job/{id}/apply", response_model=schemas.Result)
-def apply_job(Job: schemas.JobApply, db: Session = Depends(get_db)):
+def apply_job(id: int, db: Session = Depends(get_db)):
+    Job = schemas.JobApply
+    Job.JobId = id
+    Job.ApplyStatus = "True"
     return crud.apply_job(db=db, Job=Job)
